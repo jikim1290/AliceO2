@@ -65,9 +65,16 @@ class Geometry
     return o2::base::GeometryManager::getPNEntry(getDetID(), index);
   }
 
+  // Calculate the coordinates of all the channels.
+  void calculateChannelCenter();
+  // Get the coordinates of the center of the channel channelId.
+  TVector3 getChannelCenter(UInt_t channelId) {return mChannelCenter[channelId];}
+
  private:
   TVector3 mMCP[52];
   TVector3 mAngles[28];
+  std::array<TVector3, Nchannels> mChannelCenter;  /// Center of each channel in FT0 A (96) and C (112) combined.
+
 
   ClassDefNV(Geometry, 2);
 };
