@@ -129,66 +129,64 @@ void Geometry::calculateChannelCenter()
 
   // Calculate first the positions for the channels for FT0-A. These correspond to the
   // channels 0-95 in the modules mMCP[0-23].
-  Double_t delta = 5.3/4.;              // Half-channel width (TODO: ask if it actually corresponds to ChannelWidth)
-  Double_t xLocalChannels[Nchannels];   // x-positions of all channels ordered according to xi and internal numbering.
-  Double_t yLocalChannels[Nchannels];   // y-positions of all channels ordered according to yi and internal numbering.
-  Double_t zLocalChannels[Nchannels];   // z-positions of all channels ordered according to zi and internal numbering.
-                                        // INFO: We assume here the modules are perpendicular to z, so z(channel) = z(module).
+  Double_t delta = 5.3 / 4.;          // Half-channel width (TODO: ask if it actually corresponds to ChannelWidth)
+  Double_t xLocalChannels[Nchannels]; // x-positions of all channels ordered according to xi and internal numbering.
+  Double_t yLocalChannels[Nchannels]; // y-positions of all channels ordered according to yi and internal numbering.
+  Double_t zLocalChannels[Nchannels]; // z-positions of all channels ordered according to zi and internal numbering.
+                                      // INFO: We assume here the modules are perpendicular to z, so z(channel) = z(module).
 
   for (int iModA = 0; iModA < NCellsA; iModA++) {
-    xLocalChannels[4*iModA+0] = mMCP[iModA].X() - delta;
-    xLocalChannels[4*iModA+1] = mMCP[iModA].X() + delta;
-    xLocalChannels[4*iModA+2] = mMCP[iModA].X() - delta;
-    xLocalChannels[4*iModA+3] = mMCP[iModA].X() + delta;
+    xLocalChannels[4 * iModA + 0] = mMCP[iModA].X() - delta;
+    xLocalChannels[4 * iModA + 1] = mMCP[iModA].X() + delta;
+    xLocalChannels[4 * iModA + 2] = mMCP[iModA].X() - delta;
+    xLocalChannels[4 * iModA + 3] = mMCP[iModA].X() + delta;
 
-    yLocalChannels[4*iModA+0] = mMCP[iModA].Y() + delta;
-    yLocalChannels[4*iModA+1] = mMCP[iModA].Y() + delta;
-    yLocalChannels[4*iModA+2] = mMCP[iModA].Y() - delta;
-    yLocalChannels[4*iModA+3] = mMCP[iModA].Y() - delta;
+    yLocalChannels[4 * iModA + 0] = mMCP[iModA].Y() + delta;
+    yLocalChannels[4 * iModA + 1] = mMCP[iModA].Y() + delta;
+    yLocalChannels[4 * iModA + 2] = mMCP[iModA].Y() - delta;
+    yLocalChannels[4 * iModA + 3] = mMCP[iModA].Y() - delta;
 
-    zLocalChannels[4*iModA+0] = mMCP[iModA].Z();
-    zLocalChannels[4*iModA+1] = mMCP[iModA].Z();
-    zLocalChannels[4*iModA+2] = mMCP[iModA].Z();
-    zLocalChannels[4*iModA+3] = mMCP[iModA].Z();
+    zLocalChannels[4 * iModA + 0] = mMCP[iModA].Z();
+    zLocalChannels[4 * iModA + 1] = mMCP[iModA].Z();
+    zLocalChannels[4 * iModA + 2] = mMCP[iModA].Z();
+    zLocalChannels[4 * iModA + 3] = mMCP[iModA].Z();
   }
 
   // Calculate then the positions for the channels for FT0-C, corresponding to the
   // channels 96-207 in the modules mMCP[24-51].
   for (int iModC = 0; iModC < NCellsC; iModC++) {
-    xLocalChannels[4*(iModC+NCellsA)+0] = mMCP[iModC+NCellsA].X() - delta;
-    xLocalChannels[4*(iModC+NCellsA)+1] = mMCP[iModC+NCellsA].X() + delta;
-    xLocalChannels[4*(iModC+NCellsA)+2] = mMCP[iModC+NCellsA].X() - delta;
-    xLocalChannels[4*(iModC+NCellsA)+3] = mMCP[iModC+NCellsA].X() + delta;
+    xLocalChannels[4 * (iModC + NCellsA) + 0] = mMCP[iModC + NCellsA].X() - delta;
+    xLocalChannels[4 * (iModC + NCellsA) + 1] = mMCP[iModC + NCellsA].X() + delta;
+    xLocalChannels[4 * (iModC + NCellsA) + 2] = mMCP[iModC + NCellsA].X() - delta;
+    xLocalChannels[4 * (iModC + NCellsA) + 3] = mMCP[iModC + NCellsA].X() + delta;
 
-    yLocalChannels[4*(iModC+NCellsA)+0] = mMCP[iModC+NCellsA].Y() + delta;
-    yLocalChannels[4*(iModC+NCellsA)+1] = mMCP[iModC+NCellsA].Y() + delta;
-    yLocalChannels[4*(iModC+NCellsA)+2] = mMCP[iModC+NCellsA].Y() - delta;
-    yLocalChannels[4*(iModC+NCellsA)+3] = mMCP[iModC+NCellsA].Y() - delta;
+    yLocalChannels[4 * (iModC + NCellsA) + 0] = mMCP[iModC + NCellsA].Y() + delta;
+    yLocalChannels[4 * (iModC + NCellsA) + 1] = mMCP[iModC + NCellsA].Y() + delta;
+    yLocalChannels[4 * (iModC + NCellsA) + 2] = mMCP[iModC + NCellsA].Y() - delta;
+    yLocalChannels[4 * (iModC + NCellsA) + 3] = mMCP[iModC + NCellsA].Y() - delta;
 
-    zLocalChannels[4*(iModC+NCellsA)+0] = mMCP[iModC+NCellsA].Z();
-    zLocalChannels[4*(iModC+NCellsA)+1] = mMCP[iModC+NCellsA].Z();
-    zLocalChannels[4*(iModC+NCellsA)+2] = mMCP[iModC+NCellsA].Z();
-    zLocalChannels[4*(iModC+NCellsA)+3] = mMCP[iModC+NCellsA].Z();
+    zLocalChannels[4 * (iModC + NCellsA) + 0] = mMCP[iModC + NCellsA].Z();
+    zLocalChannels[4 * (iModC + NCellsA) + 1] = mMCP[iModC + NCellsA].Z();
+    zLocalChannels[4 * (iModC + NCellsA) + 2] = mMCP[iModC + NCellsA].Z();
+    zLocalChannels[4 * (iModC + NCellsA) + 3] = mMCP[iModC + NCellsA].Z();
   }
 
   // Convert the local ordering of the channels to the official one and apply it to the channel map.
   // localChannelOrder[local channel index] = official channel.
-    Int_t localChannelOrder[Nchannels] = {
-      58, 56, 59, 57, 54, 52, 55, 53, 50, 49, 51, 48, 47, 45, 46, 44, 43, 42, 41, 40,
-      61, 60, 63, 62, 14, 12, 15, 13, 10, 9, 11, 8, 7, 6, 5, 4, 39, 38, 37, 36,
-      65, 64, 66, 67, 17, 16, 18, 19, 3, 2, 0, 1, 35, 34, 32, 33,
-      68, 69, 70, 71, 20, 21, 22, 23, 24, 27, 25, 26, 29, 31, 28, 30, 94, 95, 92, 93,
-      72, 73, 74, 75, 76, 78, 77, 79, 80, 83, 81, 82, 85, 87, 84, 86, 89, 91, 88, 90,
-      173, 172, 175, 174, 206, 207, 204, 205, 169, 168, 171, 170, 202, 203, 200, 201,
-      117, 116, 119, 118, 142, 143, 140, 141, 114, 112, 115, 113, 137, 139, 136, 138,
-      166, 164, 167, 165, 197, 199, 196, 198, 110, 108, 111, 109, 133, 135, 132, 134,
-      162, 160, 163, 161, 193, 195, 192, 194, 107, 105, 106, 104, 128, 130, 129, 131,
-      159, 157, 158, 156, 188, 190, 189, 191, 99, 98, 97, 96, 120, 121, 122, 123,
-      103, 102, 101, 100, 124, 125, 126, 127, 155, 153, 154, 152, 184, 186, 185, 187,
-      147, 146, 145, 144, 176, 177, 178, 179, 151, 150, 149, 148, 180, 181, 182, 183
-    };
-    for (int iChannel = 0; iChannel < Nchannels; iChannel++) {
-      mChannelCenter[localChannelOrder[iChannel]].SetXYZ(xLocalChannels[iChannel], yLocalChannels[iChannel], zLocalChannels[iChannel]);
-    }
-    
+  Int_t localChannelOrder[Nchannels] = {
+    58, 56, 59, 57, 54, 52, 55, 53, 50, 49, 51, 48, 47, 45, 46, 44, 43, 42, 41, 40,
+    61, 60, 63, 62, 14, 12, 15, 13, 10, 9, 11, 8, 7, 6, 5, 4, 39, 38, 37, 36,
+    65, 64, 66, 67, 17, 16, 18, 19, 3, 2, 0, 1, 35, 34, 32, 33,
+    68, 69, 70, 71, 20, 21, 22, 23, 24, 27, 25, 26, 29, 31, 28, 30, 94, 95, 92, 93,
+    72, 73, 74, 75, 76, 78, 77, 79, 80, 83, 81, 82, 85, 87, 84, 86, 89, 91, 88, 90,
+    173, 172, 175, 174, 206, 207, 204, 205, 169, 168, 171, 170, 202, 203, 200, 201,
+    117, 116, 119, 118, 142, 143, 140, 141, 114, 112, 115, 113, 137, 139, 136, 138,
+    166, 164, 167, 165, 197, 199, 196, 198, 110, 108, 111, 109, 133, 135, 132, 134,
+    162, 160, 163, 161, 193, 195, 192, 194, 107, 105, 106, 104, 128, 130, 129, 131,
+    159, 157, 158, 156, 188, 190, 189, 191, 99, 98, 97, 96, 120, 121, 122, 123,
+    103, 102, 101, 100, 124, 125, 126, 127, 155, 153, 154, 152, 184, 186, 185, 187,
+    147, 146, 145, 144, 176, 177, 178, 179, 151, 150, 149, 148, 180, 181, 182, 183};
+  for (int iChannel = 0; iChannel < Nchannels; iChannel++) {
+    mChannelCenter[localChannelOrder[iChannel]].SetXYZ(xLocalChannels[iChannel], yLocalChannels[iChannel], zLocalChannels[iChannel]);
+  }
 }
