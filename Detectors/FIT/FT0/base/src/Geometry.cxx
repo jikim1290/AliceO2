@@ -49,7 +49,7 @@ void Geometry::setCsideModules()
   Float_t mInStart[3] = {2.9491, 2.9491, 2.5};
   Float_t mStartC[3] = {20., 20, 5.5};
 
-  Double_t crad = ZdetC;     // define concave c-side radius here
+  Double_t crad = ZdetC; // define concave c-side radius here
 
   Double_t dP = mInStart[0]; // side length of mcp divided by 2
 
